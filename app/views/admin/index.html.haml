@@ -1,4 +1,3 @@
-= link_to "new admin", new_admin_path, class: "btn btn-success"
 #content
   .admin-table
     %h1 Writers
@@ -97,8 +96,9 @@
                         %br
                         .col-sm-8
                           %p ********
-    %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-      Create Writer
+          - if admin.super_admin?
+            %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+              Create Writer
 #myModal.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
