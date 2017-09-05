@@ -1,0 +1,289 @@
+@font-face {
+  font-family: "Proxima Nova";
+  src: asset_url('Mark-Simonson-Proxima-Nova-Regular.otf') format("truetype");
+}
+@font-face {
+  font-family: "Proxima Nova Light Italic";
+  src: asset_url('Mark Simonson-Proxima-Nova-Light-Italic.otf') format("truetype");
+}
+@font-face {
+  font-family: "Proxima Nova Light";
+  src: asset_url('Mark-Simonson-Proxima-Nova-Light.otf') format("truetype");
+}
+@font-face {
+  font-family: "Proxima Nova Extrabold";
+  src: asset_url('Mark-Simonson-Proxima-Nova-Extrabold.otf') format("truetype");
+}
+@font-face {
+  font-family: "Proxima Nova Bold";
+  src: asset_url('Mark-Simonson-Proxima-Nova-Bold-Italic.otf') format("truetype");
+}
+@font-face {
+  font-family: "Proxima Nova Bold";
+  src: asset_url('Mark-Simonson-Proxima-Nova-Bold.otf') format("truetype");
+}
+@font-face {
+  font-family: "Proxima Nova Semibold";
+  src: asset_url('Mark-Simonson-Proxima-Nova-Semibold.otf') format("truetype");
+}
+@font-face {
+  font-family: "Proxima Nova Semibold";
+  src: asset_url('Mark-Simonson-Proxima-Nova-Semibold-Italic.otf') format("truetype");
+}
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+  background: #fff;
+  font: 14px/17px 'Proxima Nova';
+  margin: 0;
+  color: #515151;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#header {
+  width: 100%;
+  min-height: 71px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+}
+#header .header-holder {
+  padding: 17px 50px 11px ;
+}
+.icon-download a {
+  text-decoration: none;
+  color: #000;
+  font-size: 24px;
+}
+#header h2{
+  line-height: 29px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a222f;
+  padding: 4px 0 0;
+  margin: 0;
+  font-family:'Proxima Nova Bold';
+}
+.admin-table h1{
+  font-size: 30px;
+  line-height: 35px;
+  margin: 0 0 20px;
+
+}
+#content {
+  float: left;
+  width: 100%;
+  padding: 54px 0 0 233px;
+}
+.admin-table {
+  padding: 70px 15px 20px;
+}
+#footer {
+  min-height: 83;
+  background-color: #f5f5f5;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+  padding: 18px 40px 25px 233px;
+}
+.footer-btnarea {
+  float: right;
+}
+ .admin-table {
+
+ }
+ .table-bordered > thead > tr > th,
+ .table-bordered > tbody > tr > th,
+ .table-bordered > thead > tr > td,
+ .table-bordered > tbody > tr > td {
+    width: 16%;
+    vertical-align: middle;
+ }
+  .table-bordered > tbody > tr > td a {
+    color: #000;
+    text-decoration: none;
+  }
+ .table-bordered > thead > tr > th,
+ .table-bordered > tbody > tr > th {
+    border-top: 1px solid #ddd !important;
+    vertical-align: middle;
+ }
+ .table-bordered > thead > tr > th:last-child,
+ .table-bordered > tbody > tr > th:last-child {
+    border-top: none !important;
+    width: 6.33% !important;
+ }
+ .editing-td {
+    font-size: 19px;
+ }
+.delet-td {
+   font-size: 19px;
+   border: none !important;
+   width: 6.33% !important;
+   background: none !important
+}
+.editing-td .fa-eye{
+  margin-right: 10px;
+}
+.table-bordered {
+  border: none;
+}
+.btn-wirte {
+  background: #dddddd;
+  color: #000;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+@media (max-width: 1025px) {
+  #header h2 {
+    line-height: 25px;
+    font-size: 18px;
+  }
+  .btn-New-campaign {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+@media (max-width: 767px) {
+  #header {
+    padding: 0 20px 0 60px;
+  }
+  #header h2 {
+    line-height: 25px;
+    font-size: 18px;
+    padding: 6px 0 0;
+  }
+  .header-heading {
+    margin-bottom: 10px;
+  }
+  .right-penal {
+    text-align: center !important;
+  }
+  .btn-New-campaign {
+    margin-right: 10px;
+  }
+  #content {
+    width: 100%;
+    padding: 82px 0 0;
+  }
+  .form-campaign .form-control.textarea-filed,
+  .form-campaign .form-select,
+  .form-campaign .form-control {
+    width: 100% !important;
+  }
+  #header .header-holder {
+    padding: 10px 0px;
+  }
+  #footer {
+    min-height: 83px;
+    background-color: #f5f5f5;
+    position: inherit;
+    left: 0;
+    width: 100%;
+    float: left;
+    bottom: 0;
+    padding: 15px 20px 20px;
+  }
+  .footer-btnarea {
+    float: left;
+    width: 100%;
+  }
+  #footer .cancel-btn {
+    float: left;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  #footer .continue-btn {
+    float: left;
+    width: 100%;
+  }
+}
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  background: url("../images/checkbox.png") no-repeat 0 100%;
+  border-radius: 4px;
+
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '';
+  position: absolute;
+  top: 0;
+      background: url("../images/checkbox.png") no-repeat 0 0;
+  left: 0;
+  font-size: 1.1em;
+  line-height: 0.8;
+  color: #4797f4;
+  width: 18px;
+  height: 18px;
+  transition: all .2s;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+;
+}

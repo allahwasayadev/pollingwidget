@@ -1,0 +1,28 @@
+%h2
+  this is the new user form
+= form_for @user, url: create_admin_path do |f|
+  .field
+    = f.label :email
+    %br
+    = f.email_field :email, autofocus: true
+  .field
+    = f.label :name
+    %br
+    = f.text_field :name
+  .field
+    = f.label :last_name
+    %br
+    = f.text_field :last_name
+  .field
+    = f.label :password
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br
+    = f.password_field :password, autocomplete: "off"
+  .field
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation, autocomplete: "off"
+  .actions
+    = f.submit "Create"

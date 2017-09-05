@@ -1,0 +1,49 @@
+.main-background
+  / - if admin_signed_in?
+  /   = link_to "logout",destroy_admin_session_path,method: "delete"
+  / - else
+  /   = link_to "sign-up",new_admin_registration_path
+  /   = link_to "sign-in",new_admin_session_path
+  .sign-in
+    .container.col-md-6.float-none#login
+      .row.form-content.padd-bottom
+        .col-md-12
+          = form_for(@user, url: session_path(@user),:html => {class: "form form-horizontal session_form"}) do |f|
+            .form-group.is-empty.dropdown-inputs
+              = f.email_field :email, autofocus: true,class: "form-control", id: "inputEmail",placeholder: "Email"
+            .form-group.is-empty.dropdown-inputs
+              = f.password_field :password, autofocus: true,class: "form-control", id: "inputPassword",placeholder: "Password"
+            .form-group
+              = f.submit "Log In",class: "user-login"
+        .text-center
+          %a.signup.left.dropdown-link{:href => "javascript:void(0)"}
+            %b Register
+          %a.pull-right.dropdown-link{:href => new_password_path('admin')}
+            %b Forgot Password?
+    .container#register.hide.col-md-6.float-none
+      .row.padd-bottom
+        .col-md-12
+          = form_for(@user, url: registration_path(@user),:html => {class: "form form-horizontal registration_form"}) do |f|
+            = f.hidden_field :user_type,value: begin params[:user][:user_type].present? ? params[:user][:user_type] : "client" rescue 'client' end
+            .form-content
+              .form-group.is-empty.dropdown-inputs
+                .col-md-12
+                  = f.email_field :email, autofocus: true,class: "form-control", id: "Email",placeholder: "Email"
+              .form-group.is-empty.dropdown-inputs
+                .col-md-12
+                  = f.text_field :name, autofocus: true,class: "form-control",placeholder: "First Name"
+              .form-group.is-empty.dropdown-inputs
+                .col-md-12
+                  = f.text_field :last_name, autofocus: true,class: "form-control",placeholder: "Last Name"
+              .form-group.is-empty.dropdown-inputs
+                .col-md-12
+                  = f.password_field :password, autocomplete: "off",class: "form-control", id: "Password",placeholder: "Password"
+              .form-group.is-empty.dropdown-inputs
+                .col-md-12
+                  = f.password_field :password_confirmation, autocomplete: "off",class: "form-control", id: "PasswordConfirmation",placeholder: "Confirm Password"
+              .form-group
+                .col-md-12.text-center
+                  = f.submit "Register",class: "user-registration"
+        .text-center
+          %a.login.left.dropdown-link{:href => "javascript:void(0)"}
+            %b Login

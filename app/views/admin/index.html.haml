@@ -1,0 +1,137 @@
+= link_to "new admin", new_admin_path, class: "btn btn-success"
+#content
+  .admin-table
+    %h1 Writers
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Last Name
+          %th Email
+          %th Password
+          %th Password
+          %th
+          %th.delet-td
+      %tbody
+        - @admins.try(:each) do |admin|
+          %tr
+            %td #{admin.name}
+            %td #{admin.last_name}
+            %td #{admin.email}
+            %td ************
+            %td ************
+            %td.text-center.editing-td
+              %a.fa.fa-eye{"data-target" => "#viewAdmin", "data-toggle" => "modal", :type => "button"}
+              %a.fa.fa-pencil{"aria-hidden" => "true", :href => "#"}
+            %td.text-center.delet-td
+              %a.fa.fa-trash{"data-target" => "#deleteAdmin", "data-toggle" => "modal", :type => "button"}
+              #deleteAdmin.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog{:role => "document"}
+                  .modal-content
+                    .modal-body
+                      %h1 Are you sure you want to delete this writer?
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Email
+                        %br
+                        .col-sm-8
+                          %p #{admin.email}
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Name
+                        %br
+                        .col-sm-8
+                          %p #{admin.name}
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Last Name
+                        %br
+                        .col-sm-8
+                          %p #{admin.last_name}
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Password
+                        %br
+                        .col-sm-8
+                          %p ********
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Password Confirmation
+                        %br
+                        .col-sm-8
+                          %p ********
+                    .modal-btn-area
+                      = link_to "Delete",admin_path(admin),method: "delete",class: "btn btn-danger"
+              #viewAdmin.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+                .modal-dialog{:role => "document"}
+                  .modal-content
+                    .modal-body
+                      %h1 View Writer
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Email
+                        %br
+                        .col-sm-8
+                          %p #{admin.email}
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Name
+                        %br
+                        .col-sm-8
+                          %p #{admin.name}
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Last Name
+                        %br
+                        .col-sm-8
+                          %p #{admin.last_name}
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Password
+                        %br
+                        .col-sm-8
+                          %p ********
+                      .field.form-group
+                        %label.col-sm-4.control-label
+                          Password Confirmation
+                        %br
+                        .col-sm-8
+                          %p ********
+    %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+      Create Writer
+#myModal.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        %h1 Create a new Writer
+        = form_for @user, url: create_admin_path, class: "form-horizontal" do |f|
+          .field.form-group
+            = f.label :email, class: "col-sm-4 control-label"
+            %br
+            .col-sm-8
+              = f.email_field :email, autofocus: true, class: "form-control"
+          .field.form-group
+            = f.label :name, class: "col-sm-4 control-label"
+            %br
+            .col-sm-8
+              = f.text_field :name, class: "form-control"
+          .field.form-group
+            = f.label :last_name, class: "col-sm-4 control-label"
+            %br
+            .col-sm-8
+              = f.text_field :last_name, class: "form-control"
+          .field.form-group
+            = f.label :password, class: "col-sm-4 control-label"
+            - if @minimum_password_length
+              %em
+                (#{@minimum_password_length} characters minimum)
+            %br
+            .col-sm-8
+              = f.password_field :password, autocomplete: "off", class: "form-control"
+          .field.form-group
+            = f.label :password_confirmation, class: "col-sm-4 control-label"
+            %br
+            .col-sm-8
+              = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+          .actions.modal-btn-area
+            = f.submit "Create"
