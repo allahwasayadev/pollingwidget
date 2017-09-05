@@ -16,8 +16,8 @@
             .form-group
               = f.submit "Log In",class: "user-login"
         .text-center
-          %a.signup.left.dropdown-link{:href => "javascript:void(0)"}
-            %b Register
+          / %a.signup.left.dropdown-link{:href => "javascript:void(0)"}
+          /   %b Register
           %a.pull-right.dropdown-link{:href => new_password_path('admin')}
             %b Forgot Password?
     .container#register.hide.col-md-6.float-none
