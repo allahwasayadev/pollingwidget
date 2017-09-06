@@ -1,0 +1,34 @@
+.modal-dialog{:role => "document"}
+  .modal-content
+    .modal-body
+      %h1 View Writer
+      .field.form-group
+        %label.col-sm-4.control-label
+          Email
+        %br
+        .col-sm-8
+          %p #{@admin.email}
+      .field.form-group
+        %label.col-sm-4.control-label
+          Name
+        %br
+        .col-sm-8
+          %p #{@admin.name}
+      .field.form-group
+        %label.col-sm-4.control-label
+          Last Name
+        %br
+        .col-sm-8
+          %p #{@admin.last_name}
+      .field.form-group
+        %label.col-sm-4.control-label
+          Password
+        %br
+        .col-sm-8
+          %p ********
+      .field.form-group
+        %label.col-sm-4.control-label
+          Password Confirmation
+        %br
+        .col-sm-8
+          %p ********

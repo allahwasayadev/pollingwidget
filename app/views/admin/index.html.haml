@@ -1,110 +1,41 @@
-#content
-  .admin-table
-    %h1 Writers
-    %table.table.table-bordered.table-striped
-      %thead
+.admin-table
+  %h1 Writers
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th Name
+        %th Last Name
+        %th Email
+        %th Password
+        %th Password
+        %th
+        %th.delet-td
+    %tbody
+      - @admins.try(:each_with_index) do |admin,index|
         %tr
-          %th Name
-          %th Last Name
-          %th Email
-          %th Password
-          %th Password
-          %th
-          %th.delet-td
-      %tbody
-        - @admins.try(:each) do |admin|
-          %tr
-            %td #{admin.name}
-            %td #{admin.last_name}
-            %td #{admin.email}
-            %td ************
-            %td ************
-            %td.text-center.editing-td
-              %a.fa.fa-eye{"data-target" => "#viewAdmin", "data-toggle" => "modal", :type => "button"}
-              %a.fa.fa-pencil{"aria-hidden" => "true", :href => "#"}
-            %td.text-center.delet-td
-              %a.fa.fa-trash{"data-target" => "#deleteAdmin", "data-toggle" => "modal", :type => "button"}
-              #deleteAdmin.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-                .modal-dialog{:role => "document"}
-                  .modal-content
-                    .modal-body
-                      %h1 Are you sure you want to delete this writer?
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Email
-                        %br
-                        .col-sm-8
-                          %p #{admin.email}
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Name
-                        %br
-                        .col-sm-8
-                          %p #{admin.name}
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Last Name
-                        %br
-                        .col-sm-8
-                          %p #{admin.last_name}
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Password
-                        %br
-                        .col-sm-8
-                          %p ********
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Password Confirmation
-                        %br
-                        .col-sm-8
-                          %p ********
-                    .modal-btn-area
-                      = link_to "Delete",admin_path(admin),method: "delete",class: "btn btn-danger"
-              #viewAdmin.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
-                .modal-dialog{:role => "document"}
-                  .modal-content
-                    .modal-body
-                      %h1 View Writer
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Email
-                        %br
-                        .col-sm-8
-                          %p #{admin.email}
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Name
-                        %br
-                        .col-sm-8
-                          %p #{admin.name}
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Last Name
-                        %br
-                        .col-sm-8
-                          %p #{admin.last_name}
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Password
-                        %br
-                        .col-sm-8
-                          %p ********
-                      .field.form-group
-                        %label.col-sm-4.control-label
-                          Password Confirmation
-                        %br
-                        .col-sm-8
-                          %p ********
-          - if admin.super_admin?
-            %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-              Create Writer
+          %td #{admin.name}
+          %td #{admin.last_name}
+          %td #{admin.email}
+          %td ************
+          %td ************
+          %td.text-center.editing-td
+            = link_to admin_path(admin),remote: true do
+              %i.fa.fa-eye.edit-admin
+            = link_to edit_admin_path(admin),remote: true do
+              %i.fa.fa-pencil
+          %td.text-center.delet-td
+            %a.fa.fa-trash{"data-target" => "#deleteAdmin_#{index}", "data-toggle" => "modal", :type => "button"}
+            / = render "delete_admin_modal", locales: {admin: admin}
+            = render partial: "delete_admin_modal", locals: {admin: admin,index: index}
+  - if current_admin.super_admin?
+    %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+      Create Writer
 #myModal.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-body
         %h1 Create a new Writer
-        = form_for @user, url: create_admin_path, class: "form-horizontal" do |f|
+        = form_for @admin, url: create_admin_path, class: "form-horizontal" do |f|
           .field.form-group
             = f.label :email, class: "col-sm-4 control-label"
             %br
@@ -135,3 +66,5 @@
               = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
           .actions.modal-btn-area
             = f.submit "Create"
+#viewAdmin.modal.fade.in.new-admin-writer.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#editAdmin.modal.fade.in.new-admin-writer.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

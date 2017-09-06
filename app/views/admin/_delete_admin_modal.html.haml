@@ -1,0 +1,37 @@
+.modal.fade.in.new-admin-writer{:id => "deleteAdmin_#{index}","aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        %h1 Are you sure you want to delete this writer?
+        .field.form-group
+          %label.col-sm-4.control-label
+            Email
+          %br
+          .col-sm-8
+            %p #{admin.email}
+        .field.form-group
+          %label.col-sm-4.control-label
+            Name
+          %br
+          .col-sm-8
+            %p #{admin.name}
+        .field.form-group
+          %label.col-sm-4.control-label
+            Last Name
+          %br
+          .col-sm-8
+            %p #{admin.last_name}
+        .field.form-group
+          %label.col-sm-4.control-label
+            Password
+          %br
+          .col-sm-8
+            %p ********
+        .field.form-group
+          %label.col-sm-4.control-label
+            Password Confirmation
+          %br
+          .col-sm-8
+            %p ********
+      .modal-btn-area
+        = link_to "Delete",admin_path(admin),method: "delete",class: "btn btn-danger"

@@ -1,20 +1,21 @@
-.twocolumns
-  .col-md-2.col-sm-2.col-xs-2
-    .mobile-menu
-      %aside#sidebar
-        %a#showLeft{:href => "#"}
-          %span
-          %span
-          %span
-        %nav#cbp-spmenu-s1.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-left.navarea
-          %ul.nav-area
-            %li
-              %a{:href => "#"} My Account
-            %li
-              %a{:href => "#"} Widgets
-            %li
-              %a{:href => "#"} Polls
-            %li
-              %a{:href => "#"} Questions
-            %li
-              %a{:href => "#"} Admins
+.col-md-2.col-sm-2.col-xs-2
+  .mobile-menu
+    %aside#sidebar
+      %a#showLeft{:href => "#"}
+        %span
+        %span
+        %span
+      %nav#cbp-spmenu-s1.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-left.navarea
+        %ul.nav-area
+          %li
+            = link_to "My Account",account_admin_path(current_admin)
+            / %a{:href => "#"} My Account
+          %li
+            %a{:href => "#"} Widgets
+          %li
+            %a{:href => "#"} Polls
+          %li
+            %a{:href => "#"} Questions
+          %li
+            = link_to "Admins", admin_index_path
+            / %a{:href => "#"} Admins

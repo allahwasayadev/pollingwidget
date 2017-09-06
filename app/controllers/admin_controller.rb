@@ -3,11 +3,11 @@ class AdminController < ApplicationController
 
   def index
     @admins = Admin.all
-    @user = Admin.new
+    @admin = Admin.new
   end
 
   def new
-    @user = Admin.new
+    @admin = Admin.new
   end
 
   def create
@@ -21,16 +21,34 @@ class AdminController < ApplicationController
     end
   end
 
+  def show
+    @admin = Admin.find(params[:id])
+  end
+
+  def edit
+    @admin = Admin.find(params[:id])
+  end
+
+  def update
+    admin = Admin.find(params[:id])
+    admin.update(admin_params)
+    redirect_back(fallback_location: :back,notice: "User updated")
+  end
+
   def destroy
     admin = Admin.find(params[:id])
     admin.delete
     redirect_to admin_index_url, alert: "Requested user has been deleted"
   end
 
+  def account
+    @admin = Admin.find(params[:id])
+  end
+
   private
 
   def admin_params
-    params.require(:admin).permit(:name,:last_name,:email,:password,:password_confirmation)
+    params.require(:admin).permit(:name,:last_name,:email)
   end
 
   def set_layout
