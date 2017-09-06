@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_filter :set_layout
+  before_filter :set_admin, only: [:show,:edit,:update,:account,:destroy]
 
   def index
     @admins = Admin.all
@@ -17,32 +18,27 @@ class AdminController < ApplicationController
       NotificationMailer.new_user_notification(admin_params).deliver
       redirect_to admin_index_url, notice: 'Admin was successfully created.'
     else
-      render :new
+      redirect_back(fallback_location: :back,alert: "Email already exists")
     end
   end
 
   def show
-    @admin = Admin.find(params[:id])
   end
 
   def edit
-    @admin = Admin.find(params[:id])
   end
 
   def update
-    admin = Admin.find(params[:id])
-    admin.update(admin_params)
+    @admin.update(admin_params)
     redirect_back(fallback_location: :back,notice: "User updated")
   end
 
   def destroy
-    admin = Admin.find(params[:id])
-    admin.delete
+    @admin.delete
     redirect_to admin_index_url, alert: "Requested user has been deleted"
   end
 
   def account
-    @admin = Admin.find(params[:id])
   end
 
   private
@@ -53,6 +49,10 @@ class AdminController < ApplicationController
 
   def set_layout
     self.class.layout "dashboard"
+  end
+
+  def set_admin
+    @admin = Admin.find(params[:id])
   end
 
 end

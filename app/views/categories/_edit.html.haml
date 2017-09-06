@@ -1,0 +1,12 @@
+.modal-dialog{:role => "document"}
+  .modal-content
+    .modal-body
+      %h1 Edit Category
+      = form_for @category, class: "form-horizontal" do |f|
+        .field.form-group
+          = f.label :name, class: "col-sm-4 control-label"
+          %br
+          .col-sm-8
+            = f.text_field :name, class: "form-control"
+        .actions.modal-btn-area
+          = f.submit "Save"

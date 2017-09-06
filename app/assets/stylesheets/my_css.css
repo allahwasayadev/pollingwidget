@@ -17,3 +17,8 @@ margin-top: 20%;
 .modal-content {
   padding-bottom: 30px;
 }
+
+.nav-area>li.active>a {
+  color: black;
+  background:#999999;
+}

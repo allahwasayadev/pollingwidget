@@ -1,0 +1,13 @@
+.modal.fade.in.new-category{:id => "deleteCategory_#{index}","aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        %h1 Are you sure you want to delete this category?
+        .field.form-group
+          %label.col-sm-4.control-label
+            Name
+          %br
+          .col-sm-8
+            %p #{category.name}
+      .modal-btn-area
+        = link_to "Delete",category_path(category),method: "delete",class: "btn btn-danger"

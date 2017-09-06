@@ -12,4 +12,10 @@
           %li
             %a{:href => "#"} Widgets
           %li
-            %a{:href => "#"} Poll Creator
+            %a{:href => "#"} Polls
+          %li
+            %a{:href => "#"} Questions
+          %li{ class: "#{active_class('categories','index')}" }
+            = link_to "Categories", categories_path
+          %li{ class: "#{active_class('admin','index')}" }
+            = link_to "Admins", admin_index_path

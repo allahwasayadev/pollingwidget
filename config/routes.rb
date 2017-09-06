@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :categories
+
   post 'create_admin' => 'admin#create', as: :create_admin
 
 end

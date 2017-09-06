@@ -1,35 +1,34 @@
-.admin-table
-  %h1 Writers
-  %table.table.table-bordered.table-striped
-    %thead
+%h1 Writers
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Name
+      %th Last Name
+      %th Email
+      %th Password
+      %th Password
+      %th
+      %th.delet-td
+  %tbody
+    - @admins.try(:each_with_index) do |admin,index|
       %tr
-        %th Name
-        %th Last Name
-        %th Email
-        %th Password
-        %th Password
-        %th
-        %th.delet-td
-    %tbody
-      - @admins.try(:each_with_index) do |admin,index|
-        %tr
-          %td #{admin.name}
-          %td #{admin.last_name}
-          %td #{admin.email}
-          %td ************
-          %td ************
-          %td.text-center.editing-td
-            = link_to admin_path(admin),remote: true do
-              %i.fa.fa-eye.edit-admin
-            = link_to edit_admin_path(admin),remote: true do
-              %i.fa.fa-pencil
-          %td.text-center.delet-td
-            %a.fa.fa-trash{"data-target" => "#deleteAdmin_#{index}", "data-toggle" => "modal", :type => "button"}
-            / = render "delete_admin_modal", locales: {admin: admin}
-            = render partial: "delete_admin_modal", locals: {admin: admin,index: index}
-  - if current_admin.super_admin?
-    %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
-      Create Writer
+        %td #{admin.name}
+        %td #{admin.last_name}
+        %td #{admin.email}
+        %td ************
+        %td ************
+        %td.text-center.editing-td
+          = link_to admin_path(admin),remote: true do
+            %i.fa.fa-eye.edit-admin
+          = link_to edit_admin_path(admin),remote: true do
+            %i.fa.fa-pencil
+        %td.text-center.delet-td
+          %a.fa.fa-trash{"data-target" => "#deleteAdmin_#{index}", "data-toggle" => "modal", :type => "button"}
+          / = render "delete_admin_modal", locales: {admin: admin}
+          = render partial: "delete_admin_modal", locals: {admin: admin,index: index}
+- if current_admin.super_admin?
+  %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+    Create Writer
 #myModal.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content

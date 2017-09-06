@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
 
   def index
     if admin_signed_in?
-      redirect_to admin_index_path
+      redirect_to account_admin_path
     end
   end
 

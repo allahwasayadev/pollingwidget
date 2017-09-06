@@ -112,7 +112,7 @@ table {
 #content {
   float: left;
   width: 100%;
-  padding: 70px 0 0 233px;
+  padding: 54px 0 0 233px;
 }
 .admin-table {
   padding: 70px 15px 20px;
@@ -165,7 +165,7 @@ table {
 .editing-td .fa-eye{
   margin-right: 10px;
 }
-.table-bordered {
+.table.table-bordered.table-striped, .table-bordered {
   border: none;
 }
 .btn-wirte {

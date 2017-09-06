@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:last_name])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name,:last_name])
   end
+
+  def authenticate_admin!
+    if admin_signed_in?
+      super
+    else
+      redirect_to root_path, :notice => 'Please log-in to continue'
+    end
+  end
+
 end
