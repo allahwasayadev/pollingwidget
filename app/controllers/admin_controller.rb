@@ -16,7 +16,7 @@ class AdminController < ApplicationController
     @admin = Admin.new(admin_params)
     if @admin.save
       NotificationMailer.new_user_notification(admin_params).deliver
-      redirect_to admin_index_url, notice: 'Admin was successfully created.'
+      redirect_to admin_index_url, notice: 'Writer created successfully.'
     else
       redirect_back(fallback_location: :back,alert: "Email already exists")
     end
