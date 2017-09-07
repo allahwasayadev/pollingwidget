@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/amro/gibbon.git
+  revision: bc1fd46e5de91d257308e1524f8eeda6ba87220d
+  specs:
+    gibbon (3.1.0)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,6 +71,8 @@ GEM
       railties (>= 3.2, < 5.2)
     erubis (2.7.0)
     execjs (2.7.0)
+    faraday (0.13.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -102,6 +112,7 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.12.2)
+    multipart-post (2.0.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -197,6 +208,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   dotenv-rails
+  gibbon!
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails
