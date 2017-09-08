@@ -13,8 +13,8 @@
             %a{:href => "#"} Widgets
           %li
             %a{:href => "#"} Polls
-          %li
-            %a{:href => "#"} Questions
+          %li{ class: "#{active_class('questions','index')}" }
+            = link_to "Questions", questions_path
           %li{ class: "#{active_class('categories','index')}" }
             = link_to "Categories", categories_path
           %li{ class: "#{active_class('admin','index')}" }

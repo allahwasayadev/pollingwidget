@@ -11,3 +11,11 @@ $(document).on("turbolinks:load",function() {
     return $('.alert').slideUp();
   }), 3000);
 });
+$(document).on('click', '#multiple-choice', function() {
+  $("#multiple").show();
+  $("#truefalse").hide();
+});
+$(document).on('click', '#true-false', function() {
+  $("#truefalse").show();
+  $("#multiple").hide();
+});

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   resources :categories
 
+  resources :questions
+
   post 'create_admin' => 'admin#create', as: :create_admin
 
 end
