@@ -7,96 +7,94 @@
       .col-xs-6
         .form-group
           = f.label :category,class: "col-xs-2 col-form-label"
-          - if params[:category].present?
-            = f.select :category_id,content_tag(:option,'select one...',:value=>"") + options_from_collection_for_select(@categories, 'id', 'name',params[:category]),{},class: 'form-control'
-          - else
-            = f.select :category_id,content_tag(:option,'select one...',:value=>"") + options_from_collection_for_select(@categories, 'id', 'name'),{},class: 'form-control'
-    .row
-      .col-md-6.col-sm-6.col-xs-12
-        .form-group
-          %ul.radio-list
-            %li
-              %label.radio-inline
-                %input#multiple-choice{:name => "question[question_type]", :type => "radio", :value => "Multi",checked: true}>
-                Multiple Choice
-            %li
-              %label.radio-inline
-                %input#true-false{:name => "question[question_type]", :type => "radio", :value => "T/F"}>
-                Ture or False
-        .form-group
-          %label{:for => "exampleInputEmail1"} Questioin
-          = f.text_field :question,class: "form-control",:placeholder => "Write the poll question here (character max limit?)", :rows => "4"
-        .form-group
-          #multiple
-            %label{:for => "exampleInputPassword1"} Answer Choices
-            %ul.question-list
-              %li
-                %input.form-control{:name => "question[options][1]", :type => "text",:id=> "question_options", placeholder: "correct answer"}
-              %li
-                %input.form-control{:name => "question[options][2]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
-              %li
-                %input.form-control{:name => "question[options][3]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
-              %li
-                %input.form-control{:name => "question[options][4]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
-          #truefalse
-            %label{:for => "exampleInputPassword1"} check the correct answer
+          = f.select :category_id,content_tag(:option,'select one...',:value=>"") + options_from_collection_for_select(@categories, 'id', 'name'),{},class: 'form-control question-select'
+    .question-fields
+      .row
+        .col-md-6.col-sm-6.col-xs-12
+          .form-group
             %ul.radio-list
               %li
                 %label.radio-inline
-                  %input{:name => "question[correct_option]", :type => "radio", :value => "true"}>
-                  TRUE
+                  %input#multiple-choice{:name => "question[question_type]", :type => "radio", :value => "Multi",checked: true}>
+                  Multiple Choice
               %li
                 %label.radio-inline
-                  %input{:name => "question[correct_option]", :type => "radio", :value => "false"}>
-                  FALSE
-        .form-group
-          .row
-            .col-md-3
-              %label.photo-label Side  Photo
-            .col-md-9
-              %span.btn.btn-default.btn-file
-                Upload Image
-                %input{:type => "file"}/
-        .form-group
-          %input.form-control{:placeholder => "img url//******************", :type => "text"}/
-      .col-md-6.col-sm-6.col-xs-12
-        .form-group
-          %label{:for => "exampleInputEmail1"} Preview
-          .preview-block
-            .question-preview-result
-              .prev-img
-                %img{:src => ""}/
-              .text-view
-                %strong Lorem Ipsum is simply dummy text of the
-            /
-              <ul class="option-view-list">
-              <li class="col-md-6 col-sm-6 col-xs-6">
-              <p>Lorem Ipsum is simply dummy text of the</p>
-              </li>
-              <li class="col-md-6 col-sm-6 col-xs-6">
-              <p>Lorem Ipsum is simply dummy text of the</p>
-              </li>
-              <li class="col-md-6 col-sm-6 col-xs-6">
-              <p>Lorem Ipsum is simply dummy text of the</p>
-              </li>
-              <li class="col-md-6 col-sm-6 col-xs-6">
-              <p>Lorem Ipsum is simply dummy text of the</p>
-              </li>
-              </ul>
-            %ul.radio-list
-              %li
-                %label.radio-inline
-                  %input#inlineRadio1{:name => "inlineRadioOptions", :type => "radio", :value => "option1"}>/
-                  TRUE
-              %li
-                %label.radio-inline
-                  %input#inlineRadio2{:name => "inlineRadioOptions", :type => "radio", :value => "option2"}>/
-                  FALSE
-          .row
-            .col-md-6.col-sm-6.col-xs-6
-              = f.submit 'Submit',class: "btn btn-questioin"
-            .col-md-6.col-sm-6.col-xs-6.text-right
-              %button.btn.btn-questioin{:type => "submit"} Create Another
+                  %input#true-false{:name => "question[question_type]", :type => "radio", :value => "T/F"}>
+                  Ture or False
+          .form-group
+            %label{:for => "exampleInputEmail1"} Questioin
+            = f.text_field :question,class: "form-control",:placeholder => "Write the poll question here (character max limit?)", :rows => "4"
+          .form-group
+            #multiple
+              %label{:for => "exampleInputPassword1"} Answer Choices
+              %ul.question-list
+                %li
+                  %input.form-control{:name => "question[options][1]", :type => "text",:id=> "question_options", placeholder: "correct answer"}
+                %li
+                  %input.form-control{:name => "question[options][2]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
+                %li
+                  %input.form-control{:name => "question[options][3]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
+                %li
+                  %input.form-control{:name => "question[options][4]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
+            #truefalse
+              %label{:for => "exampleInputPassword1"} check the correct answer
+              %ul.radio-list
+                %li
+                  %label.radio-inline
+                    %input{:name => "question[correct_option]", :type => "radio", :value => "true"}>
+                    TRUE
+                %li
+                  %label.radio-inline
+                    %input{:name => "question[correct_option]", :type => "radio", :value => "false"}>
+                    FALSE
+          .form-group
+            .row
+              .col-md-3
+                %label.photo-label Side  Photo
+              .col-md-9
+                %span.btn.btn-default.btn-file
+                  Upload Image
+                  %input{:type => "file"}/
+          .form-group
+            %input.form-control{:placeholder => "img url//******************", :type => "text"}/
+        .col-md-6.col-sm-6.col-xs-12
+          .form-group
+            %label{:for => "exampleInputEmail1"} Preview
+            .preview-block
+              .question-preview-result
+                .prev-img
+                  %img{:src => ""}/
+                .text-view
+                  %strong Lorem Ipsum is simply dummy text of the
+              /
+                <ul class="option-view-list">
+                <li class="col-md-6 col-sm-6 col-xs-6">
+                <p>Lorem Ipsum is simply dummy text of the</p>
+                </li>
+                <li class="col-md-6 col-sm-6 col-xs-6">
+                <p>Lorem Ipsum is simply dummy text of the</p>
+                </li>
+                <li class="col-md-6 col-sm-6 col-xs-6">
+                <p>Lorem Ipsum is simply dummy text of the</p>
+                </li>
+                <li class="col-md-6 col-sm-6 col-xs-6">
+                <p>Lorem Ipsum is simply dummy text of the</p>
+                </li>
+                </ul>
+              %ul.radio-list
+                %li
+                  %label.radio-inline
+                    %input#inlineRadio1{:name => "inlineRadioOptions", :type => "radio", :value => "option1"}>/
+                    TRUE
+                %li
+                  %label.radio-inline
+                    %input#inlineRadio2{:name => "inlineRadioOptions", :type => "radio", :value => "option2"}>/
+                    FALSE
+            .row
+              .col-md-6.col-sm-6.col-xs-6
+                = f.submit 'Submit',class: "btn btn-questioin"
+              .col-md-6.col-sm-6.col-xs-6.text-right
+                %button.btn.btn-questioin{:type => "submit"} Create Another
   %h1 Create Questions
   %table.table.table-bordered.table-striped.question-table
     %thead
@@ -116,7 +114,7 @@
           %td N/A
           %td.text-center.editing-td
             = link_to question_path(question),remote: true do
-              %i.fa.fa-eye.edit-admin
+              %i.fa.fa-eye
             = link_to edit_question_path(question),remote: true do
               %i.fa.fa-pencil
           %td.text-center.delet-td

@@ -19,3 +19,10 @@ $(document).on('click', '#true-false', function() {
   $("#truefalse").show();
   $("#multiple").hide();
 });
+$(document).on('ready', function () {
+  $(".question-fields :input").attr("disabled", true);
+
+  $( ".question-select" ).change(function() {
+    $(".question-fields :input").attr("disabled", false);
+  });
+});
