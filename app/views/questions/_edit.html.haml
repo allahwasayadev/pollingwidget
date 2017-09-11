@@ -34,10 +34,9 @@
                     %input{:name => "question[correct_option]", :type => "radio", :value => "false",:checked => !to_boolean(@question.correct_option)}>
                     FALSE
         .field.form-group
-          %label.col-sm-4.control-label Side  Photo
-          .col-sm-8
-            %span.btn.btn-default.btn-file
-              Upload Image
-              %input{:type => "file"}/
+          %label.photo-label.col-sm-4 Side  Photo
+          %span.btn.btn-default.btn-file.col-sm-8
+            Upload Image
+            = f.file_field :image,class: "upload"
         .actions.modal-btn-area
           = f.submit "Save"

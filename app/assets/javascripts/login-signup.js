@@ -21,7 +21,11 @@ $(document).on('click', '#true-false', function() {
 });
 $(document).on('ready', function () {
   $(".question-fields :input").attr("disabled", true);
+  $( ".question-select" ).attr("disabled", true);
 
+  $( ".new-question" ).click(function() {
+    $( ".question-select" ).attr("disabled", false);
+  });
   $( ".question-select" ).change(function() {
     $(".question-fields :input").attr("disabled", false);
   });

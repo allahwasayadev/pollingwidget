@@ -63,7 +63,7 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:question,:category_id,:correct_option,:question_type,:image,:options).tap do |whitelisted|
-        whitelisted[:options] = params[:question][:options].permit!
+        whitelisted[:options] = params[:question][:options].permit! unless params[:question][:options].blank?
       end
       # params.require(:question).permit!
     end
