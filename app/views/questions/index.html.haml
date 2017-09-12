@@ -2,7 +2,7 @@
   %h1
     Poll Question
     %a.fa.fa-plus-circle.new-question{"aria-hidden" => "true"}
-  = form_for @question, :html => {class: "question-form"} do |f|
+  = form_for @question, :html => {class: "question-form",id: "form"} do |f|
     .row
       .col-xs-6
         .form-group
@@ -26,7 +26,7 @@
               %label{:for => "exampleInputEmail1"} Question
               = f.text_field :question,class: "form-control",:placeholder => "Write the poll question here (character max limit?)", :rows => "4"
             .form-group
-              #multiple
+              .multiple
                 %label{:for => "exampleInputPassword1"} Answer Choices
                 %ul.question-list
                   %li
@@ -37,7 +37,7 @@
                     %input.form-control{:name => "question[options][3]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
                   %li
                     %input.form-control{:name => "question[options][4]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
-              #truefalse
+              .truefalse
                 %label{:for => "exampleInputPassword1"} check the correct answer
                 %ul.radio-list
                   %li
@@ -48,50 +48,46 @@
                     %label.radio-inline
                       %input{:name => "question[correct_option]", :type => "radio", :value => "false"}>
                       FALSE
-            .form-group
-              .row
-                .col-md-3
-                  %label.photo-label Side  Photo
-                .col-md-9
-                  %span.btn.btn-default.btn-file
-                    Upload Image
-                    = f.file_field :image,class: "upload"
-
-            .form-group
-              %input.form-control{:placeholder => "img url//******************", :type => "text"}/
+          .form-group
+            .row
+              .col-md-3
+                %label.photo-label Side  Photo
+              .col-md-9
+                %span.btn.btn-default.btn-file
+                  Upload Image
+                  = f.file_field :image,class: "upload",:onchange => "readURL(this);"
+          .form-group
+            %input.form-control{:placeholder => "img url//******************", :type => "text"}/
         .col-md-6.col-sm-6.col-xs-12
           .form-group
             %label{:for => "exampleInputEmail1"} Preview
             .preview-block
               .question-preview-result
-              /   .prev-img
-              /     %img{:src => ""}/
-              /   .text-view
-              /     %strong Lorem Ipsum is simply dummy text of the
-              / /
-              /   <ul class="option-view-list">
-              /   <li class="col-md-6 col-sm-6 col-xs-6">
-              /   <p>Lorem Ipsum is simply dummy text of the</p>
-              /   </li>
-              /   <li class="col-md-6 col-sm-6 col-xs-6">
-              /   <p>Lorem Ipsum is simply dummy text of the</p>
-              /   </li>
-              /   <li class="col-md-6 col-sm-6 col-xs-6">
-              /   <p>Lorem Ipsum is simply dummy text of the</p>
-              /   </li>
-              /   <li class="col-md-6 col-sm-6 col-xs-6">
-              /   <p>Lorem Ipsum is simply dummy text of the</p>
-              /   </li>
-              /   </ul>
-              / %ul.radio-list
-              /   %li
-              /     %label.radio-inline
-              /       %input#inlineRadio1{:name => "inlineRadioOptions", :type => "radio", :value => "option1"}>/
-              /       TRUE
-              /   %li
-              /     %label.radio-inline
-              /       %input#inlineRadio2{:name => "inlineRadioOptions", :type => "radio", :value => "option2"}>/
-              /       FALSE
+                .col-md-4
+                  %img#img_prev.hide{:alt => "your image", :src => "#"}
+                .col-md-8
+                  .text-view
+                    %strong{"data-pattern" => "%s", "data-preview" => "question[question]"}
+              .multiple
+                %ul.option-view-list
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "A) %s", "data-preview" => "question[options][1]"}
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "B) %s", "data-preview" => "question[options][2]"}
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "C) %s", "data-preview" => "question[options][3]"}
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "D) %s", "data-preview" => "question[options][4]"}
+              .truefalse
+                %ul.radio-list
+                  %li
+                    %label.radio-inline
+                      %input#inlineRadio1{:name => "inlineRadioOptions", :type => "radio", :value => "option1"}>/
+                      TRUE
+                  %li
+                    %label.radio-inline
+                      %input#inlineRadio2{:name => "inlineRadioOptions", :type => "radio", :value => "option2"}>/
+                      FALSE
             .row
               .col-md-6.col-sm-6.col-xs-6
                 = f.submit 'Submit',class: "btn btn-questioin"
