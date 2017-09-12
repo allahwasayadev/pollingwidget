@@ -27,7 +27,7 @@ margin-top: 20%;
   display: flex;
 }
 
-#truefalse {
+.truefalse {
   display: none;
 }
 .question-list.edit-question li {
@@ -36,4 +36,12 @@ margin-top: 20%;
 
 .question-show {
   background: lightgray;
+}
+
+.text-view {
+  margin-top: 15%;
+}
+
+.preview-block ul {
+  margin-left: 15%;
 }
