@@ -1,0 +1,122 @@
+.question-page
+  %h1
+    Poll Question
+    %a.fa.fa-plus-circle.new-question{"aria-hidden" => "true"}
+  = form_for @question, :html => {class: "question-form",id: "form"} do |f|
+    .row
+      .col-xs-6
+        .form-group
+          = f.label :category,class: "col-xs-2 col-form-label"
+          = f.select :category_id,content_tag(:option,'select one...',:value=>"") + options_from_collection_for_select(@categories, 'id', 'name'),{},class: 'form-control question-select'
+    .question-fields
+      .row
+        .col-md-6.col-sm-6.col-xs-12
+          .form-group
+            %ul.radio-list
+              %li
+                %label.radio-inline
+                  %input#multiple-choice{:name => "question[question_type]", :type => "radio", :value => "Multi",checked: true}>
+                  Multiple Choice
+              %li
+                %label.radio-inline
+                  %input#true-false{:name => "question[question_type]", :type => "radio", :value => "T/F"}>
+                  Ture or False
+          .form-data
+            .form-group
+              %label{:for => "exampleInputEmail1"} Question
+              = f.text_field :question,class: "form-control",:placeholder => "Write the poll question here (character max limit?)", :rows => "4"
+            .form-group
+              .multiple
+                %label{:for => "exampleInputPassword1"} Answer Choices
+                %ul.question-list
+                  %li
+                    %input.form-control{:name => "question[options][1]", :type => "text",:id=> "question_options", placeholder: "correct answer"}
+                  %li
+                    %input.form-control{:name => "question[options][2]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
+                  %li
+                    %input.form-control{:name => "question[options][3]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
+                  %li
+                    %input.form-control{:name => "question[options][4]", :type => "text",:id=> "question_options", placeholder: "wrong answer"}
+              .truefalse
+                %label{:for => "exampleInputPassword1"} check the correct answer
+                %ul.radio-list
+                  %li
+                    %label.radio-inline
+                      %input{:name => "question[correct_option]", :type => "radio", :value => "true"}>
+                      TRUE
+                  %li
+                    %label.radio-inline
+                      %input{:name => "question[correct_option]", :type => "radio", :value => "false"}>
+                      FALSE
+          .form-group
+            .row
+              .col-md-3
+                %label.photo-label Side  Photo
+              .col-md-9
+                %span.btn.btn-default.btn-file
+                  Upload Image
+                  = f.file_field :image,class: "upload",:onchange => "readURL(this);"
+          .form-group
+            %input.form-control{:placeholder => "img url//******************", :type => "text"}/
+        .col-md-6.col-sm-6.col-xs-12
+          .form-group
+            %label{:for => "exampleInputEmail1"} Preview
+            .preview-block
+              .question-preview-result
+                .col-md-4
+                  %img#img_prev.hide{:alt => "your image", :src => "#"}
+                .col-md-8
+                  .text-view
+                    %strong{"data-pattern" => "%s", "data-preview" => "question[question]"}
+              .multiple
+                %ul.option-view-list
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "A) %s", "data-preview" => "question[options][1]"}
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "B) %s", "data-preview" => "question[options][2]"}
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "C) %s", "data-preview" => "question[options][3]"}
+                  %li.col-md-6.col-sm-6.col-xs-6
+                    %p{"data-pattern" => "D) %s", "data-preview" => "question[options][4]"}
+              .truefalse
+                %ul.radio-list
+                  %li
+                    %label.radio-inline
+                      %input#inlineRadio1{:name => "inlineRadioOptions", :type => "radio", :value => "option1"}>/
+                      TRUE
+                  %li
+                    %label.radio-inline
+                      %input#inlineRadio2{:name => "inlineRadioOptions", :type => "radio", :value => "option2"}>/
+                      FALSE
+            .row
+              .col-md-6.col-sm-6.col-xs-6
+                = f.submit 'Submit',class: "btn btn-questioin"
+              .col-md-6.col-sm-6.col-xs-6.text-right
+                %button.btn.btn-questioin{:type => "submit"} Create Another
+  %h1 Create Questions
+  %table.table.table-bordered.table-striped.question-table
+    %thead
+      %tr
+        %th Question
+        %th Category
+        %th Type
+        %th Poll title
+        %th
+        %th.delet-td
+    %tbody
+      - @questions.each do |question|
+        %tr
+          %td #{question.question}
+          %td #{question.category.name}
+          %td #{question.question_type}
+          %td N/A
+          %td.text-center.editing-td
+            = link_to question_path(question),remote: true do
+              %i.fa.fa-eye
+            = link_to edit_question_path(question),remote: true do
+              %i.fa.fa-pencil
+          %td.text-center.delet-td
+            = link_to question_path(question),method: "delete" do
+              %i.fa.fa-trash
+#viewQuestion.modal.fade.in.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#editQuestion.modal.fade.in.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

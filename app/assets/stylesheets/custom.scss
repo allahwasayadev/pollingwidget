@@ -26,7 +26,6 @@ margin-top: 20%;
 .field {
   display: flex;
 }
-
 input.hidden {
   position: absolute;
   left: -9999px;
@@ -47,4 +46,22 @@ input.hidden {
 }
 .edit-profile-btn {
   margin: 15px;
+}
+.truefalse {
+  display: none;
+}
+.question-list.edit-question li {
+  width: 47%;
+}
+
+.question-show {
+  background: lightgray;
+}
+
+.text-view {
+  margin-top: 15%;
+}
+
+.preview-block ul {
+  margin-left: 15%;
 }

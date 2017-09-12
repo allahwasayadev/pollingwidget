@@ -112,10 +112,10 @@ table {
 #content {
   float: left;
   width: 100%;
-  padding: 54px 0 0 233px;
+  padding: 54px 20px 15px 233px;
 }
 .admin-table {
-  padding: 70px 15px 20px;
+  padding: 50px 0 0;
 }
 #footer {
   min-height: 83;
@@ -132,24 +132,24 @@ table {
  .admin-table {
 
  }
- .table-bordered > thead > tr > th,
- .table-bordered > tbody > tr > th,
- .table-bordered > thead > tr > td,
- .table-bordered > tbody > tr > td {
+ .admin-table .table-bordered > thead > tr > th,
+ .admin-table .table-bordered > tbody > tr > th,
+ .admin-table .table-bordered > thead > tr > td,
+ .admin-table .table-bordered > tbody > tr > td {
     width: 16%;
     vertical-align: middle;
  }
-  .table-bordered > tbody > tr > td a {
+  .admin-table .table-bordered > tbody > tr > td a {
     color: #000;
     text-decoration: none;
   }
- .table-bordered > thead > tr > th,
- .table-bordered > tbody > tr > th {
+ .admin-table .table-bordered > thead > tr > th,
+ .admin-table .table-bordered > tbody > tr > th {
     border-top: 1px solid #ddd !important;
     vertical-align: middle;
  }
- .table-bordered > thead > tr > th:last-child,
- .table-bordered > tbody > tr > th:last-child {
+ .admin-table .table-bordered > thead > tr > th:last-child,
+ .admin-table .table-bordered > tbody > tr > th:last-child {
     border-top: none !important;
     width: 6.33% !important;
  }
@@ -165,7 +165,7 @@ table {
 .editing-td .fa-eye{
   margin-right: 10px;
 }
-.table.table-bordered.table-striped, .table-bordered {
+.admin-table .table-bordered {
   border: none;
 }
 .btn-wirte {

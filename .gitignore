@@ -20,6 +20,7 @@
 /log
 /tmp
 /public/assets
+/public/uploads
 /coverage/
 /spec/tmp
 
