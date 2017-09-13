@@ -107,7 +107,7 @@
       - @questions.each do |question|
         %tr
           %td #{question.question}
-          %td #{question.category.name}
+          %td #{question.try(:category).try(:name)}
           %td #{question.question_type}
           %td N/A
           %td.text-center.editing-td
