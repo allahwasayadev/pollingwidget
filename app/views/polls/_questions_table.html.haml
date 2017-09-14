@@ -1,0 +1,30 @@
+%table.table.table-bordered.table-striped.question-table.polls-table
+  %thead
+    %tr
+      %th Question
+      %th Category
+      %th Type
+      %th Poll title
+      %th
+      %th.delet-td
+  %tbody
+    - @questions.each do |question|
+      %tr
+        %td #{question.question}
+        %td #{question.category.name}
+        %td #{question.question_type}
+        %td #{question.polls.first.try(:name).blank? ? "N/A" : question.polls.first.try(:name)}
+        %td.text-center.editing-td
+          = link_to question_path(question),remote: true do
+            %i.fa.fa-eye
+        %td.text-center.delet-td.add-to-poll-checkbox
+          .checkbox
+            %p
+              %input.add-to-poll{:type => "checkbox", :value => "#{question.id}"}>
+              add to poll
+.row
+  .col-md-offset-3
+    %button.btn.btn-questioin Clear all
+    / %button.btn.btn-questioin.collect-ids{href: new_poll_path} Add to poll
+    = link_to new_poll_path, remote: true do
+      %button.btn.btn-questioin.collect-ids Add to poll

@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to questions_url, notice: 'Question was successfully created.'
     else
-      redirect_to questions_url, notice: 'Question could not be created.'
+      redirect_to questions_url, alert: 'Question could not be created.'
     end
   end
 
@@ -62,7 +62,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:question,:category_id,:correct_option,:question_type,:image,:options).tap do |whitelisted|
+      params.require(:question).permit(:question,:category_id,:admin_id,:correct_option,:question_type,:image,:options).tap do |whitelisted|
         whitelisted[:options] = params[:question][:options].permit! unless params[:question][:options].blank?
       end
       # params.require(:question).permit!

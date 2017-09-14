@@ -11,8 +11,8 @@
             = link_to "My Account",account_admin_path(current_admin)
           %li
             %a{:href => "#"} Widgets
-          %li
-            %a{:href => "#"} Polls
+          %li{ class: "#{active_class('polls','index')}" }
+            = link_to "Polls", polls_path
           %li{ class: "#{active_class('questions','index')}" }
             = link_to "Questions", questions_path
           %li{ class: "#{active_class('categories','index')}" }

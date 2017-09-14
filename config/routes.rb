@@ -13,6 +13,12 @@ Rails.application.routes.draw do
 
   resources :questions
 
+  resources :polls do
+    collection do
+      get :update_questions
+    end
+  end
+
   post 'create_admin' => 'admin#create', as: :create_admin
 
 end

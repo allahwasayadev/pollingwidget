@@ -3,6 +3,7 @@
     Poll Question
     %a.fa.fa-plus-circle.new-question{"aria-hidden" => "true"}
   = form_for @question, :html => {class: "question-form",id: "form"} do |f|
+    = f.hidden_field :admin_id,value: current_admin.id
     .row
       .col-xs-6
         .form-group

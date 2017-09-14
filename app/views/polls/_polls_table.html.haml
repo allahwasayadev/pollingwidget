@@ -1,0 +1,26 @@
+%table.table.table-bordered.table-striped.question-table
+  %thead
+    %tr
+      %th Poll Name/Title
+      %th Category
+      %th Type
+      %th # of qestions
+      %th Widget ID
+      %th
+      %th.delet-td
+  %tbody
+    - @polls.each_with_index do |poll,index|
+      %tr
+        %td #{poll.name}
+        %td #{poll.category.name}
+        %td #{poll.poll_type}
+        %td #{poll.questions.count}
+        %td N/A
+        %td.text-center.editing-td
+          = link_to "javascript:;",remote: true do
+            %i.fa.fa-eye
+          = link_to "javascript:;",remote: true do
+            %i.fa.fa-pencil
+        %td.text-center.delet-td
+          = link_to poll_path(poll),method: "delete" do
+            %i.fa.fa-trash
