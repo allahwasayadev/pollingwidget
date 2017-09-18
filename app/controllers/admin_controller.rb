@@ -44,7 +44,10 @@ class AdminController < ApplicationController
   private
 
   def admin_params
-    params.require(:admin).permit(:name,:last_name,:email,:password,:password_confirmation)
+    admin_params = params.require(:admin).permit(:name,:last_name,:email,:password,:password_confirmation)
+    admin_params.delete(:password) unless admin_params[:password].present?
+    admin_params.delete(:password_confirmation) unless admin_params[:password_confirmation].present?
+    admin_params
   end
 
   def set_layout
