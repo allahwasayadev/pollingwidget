@@ -7,9 +7,11 @@
         %span
       %nav#cbp-spmenu-s1.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-left.navarea
         %ul.nav-area
+          %li{ class: "#{active_class('questions','index')}" }
+            = link_to "Questions", questions_path
           %li
-            = link_to "My Account",account_admin_path(current_admin)
+            %a{:href => "#"} Polls
           %li
             %a{:href => "#"} Widgets
           %li
-            %a{:href => "#"} Poll Creator
+            = link_to "My Account",account_admin_path(current_admin)

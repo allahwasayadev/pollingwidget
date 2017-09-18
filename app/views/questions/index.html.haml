@@ -20,7 +20,7 @@
               %li
                 %label.radio-inline
                   %input#true-false{:name => "question[question_type]", :type => "radio", :value => "T/F"}>
-                  Ture or False
+                  True or False
           .form-data
             .form-group
               %label{:for => "exampleInputEmail1"} Question
@@ -116,7 +116,7 @@
             = link_to edit_question_path(question),remote: true do
               %i.fa.fa-pencil
           %td.text-center.delet-td
-            = link_to question_path(question),method: "delete" do
+            = link_to question_path(question),method: "delete", :data => {:confirm => 'Are you sure you want to delete this question?'} do
               %i.fa.fa-trash
 #viewQuestion.modal.fade.in.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
 #editQuestion.modal.fade.in.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
