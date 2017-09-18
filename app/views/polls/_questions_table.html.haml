@@ -20,11 +20,5 @@
         %td.text-center.delet-td.add-to-poll-checkbox
           .checkbox
             %p
-              %input.add-to-poll{:type => "checkbox", :value => "#{question.id}"}>
+              %input.add-to-poll{:type => "checkbox", "data-value" => "#{question.to_json.html_safe}",value: "#{question.id}"}>
               add to poll
-.row
-  .col-md-offset-3
-    %button.btn.btn-questioin Clear all
-    / %button.btn.btn-questioin.collect-ids{href: new_poll_path} Add to poll
-    = link_to new_poll_path, remote: true do
-      %button.btn.btn-questioin.collect-ids Add to poll

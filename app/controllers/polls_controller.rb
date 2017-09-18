@@ -1,35 +1,13 @@
 class PollsController < ApplicationController
   before_filter :set_layout
-  before_action :set_poll, only: [:update, :destroy,:show, :edit, :update]
+  before_action :set_poll, only: [:update, :destroy, :edit, :show, :update]
 
   def index
-    puts "---------------------------"
-    puts params.inspect
-    puts "---------------------------"
-    puts "---------------------------"
-    @poll = Poll.new
     @categories = Category.all
-    @polls = Poll.all.includes(:category)
-    @questions = Question.all.includes(:category)
     if params[:poll].blank?
-      puts "===========all query========"
       @polls = Poll.all.includes(:category)
-      puts "============================"
     else
-      if poll_params[:poll_type].blank? && !poll_params[:category_id].blank?
-        puts "===========category query =="
-        @polls = Poll.where(category_id: poll_params[:category_id]).includes(:category)
-        puts "============================"
-      elsif poll_params[:category_id].blank? && !poll_params[:poll_type].blank?
-        puts "===========poll query======="
-        @polls = Poll.where(poll_type: poll_params[:poll_type]).includes(:category)
-        puts "============================"
-      elsif !poll_params[:poll_type].blank? && !poll_params[:category_id].blank?
-        @polls = Poll.where(poll_type: poll_params[:poll_type], category_id: poll_params[:category_id]).includes(:category)
-      else
-        puts "========else case =========="
-        @polls = Poll.all.includes(:category)
-      end
+      @polls = Poll.filter_polls(poll_params)
     end
     respond_to do |format|
       format.html
@@ -39,23 +17,9 @@ class PollsController < ApplicationController
 
   def update_questions
     if params[:poll].blank?
-      puts "===========all query========"
       @questions = Question.all.includes(:category)
-      puts "============================"
     else
-      if poll_params[:question_type].blank? && !poll_params[:category_id].blank?
-        puts "===========category query =="
-        @questions = Question.where(category_id: poll_params[:category_id]).includes(:category)
-        puts "============================"
-      elsif poll_params[:category_id].blank? && !poll_params[:question_type].blank?
-        puts "===========poll query======="
-        @questions = Question.where(question_type: poll_params[:question_type]).includes(:category)
-        puts "============================"
-      elsif !poll_params[:question_type].blank? && !poll_params[:category_id].blank?
-        @questions = Question.where(question_type: poll_params[:question_type], category_id: poll_params[:category_id]).includes(:category)
-      else
-        @questions = Question.all.includes(:category)
-      end
+      @questions = Question.filter_questions(poll_params)
     end
     respond_to do |format|
       format.js
@@ -63,24 +27,15 @@ class PollsController < ApplicationController
   end
 
   def new
-    puts "==========================="
-    puts "==========================="
-    puts params.inspect
-    puts "==========================="
-    puts "==========================="
     @poll = Poll.new
     @categories = Category.all
-    @question_ids = params[:question_ids].split(",")
-    @category_id = params[:category_id]
-    @poll_type = params[:poll_type]
-    @questions = Question.where(id: @question_ids)
-    puts "=========questions=========="
-    puts @questions.inspect
+    @questions = Question.all.includes(:category)
   end
 
   def create
+    @question_ids = params[:question_ids].split(",")
+    questions = Question.where(id: @question_ids)
     @poll = Poll.new(poll_params)
-    questions = Question.where(id: params[:question_ids])
     if @poll.save
       @poll.questions << questions
       redirect_to polls_url, notice: 'poll was successfully created.'
@@ -89,20 +44,7 @@ class PollsController < ApplicationController
     end
   end
 
-  def edit
-    @categories = Category.all
-  end
-
   def show
-
-  end
-
-  def update
-    if poll_params[:poll_type] == "Multi"
-      poll_params[:correct_option] = poll_params[:options]["1"]
-    end
-    @poll.update(poll_params)
-    redirect_to polls_url, notice: 'poll was successfully updated.'
   end
 
   def destroy

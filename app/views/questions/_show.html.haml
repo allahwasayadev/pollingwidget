@@ -7,7 +7,7 @@
         .row
           .col-sm-4
             %div.profile-image{:type => "file"}
-              %img{:src => @question.image.present? ? @question.image.thumb :  asset_path("avatar.png")}
+              %img{:src => @question.image.blank? ? asset_path("avatar.png") :  @question.image.thumb }
           .col-sm-8
             .field.form-group
               %p #{@question.question}
@@ -21,10 +21,10 @@
                 %ul.radio-list
                   %li
                     %label.radio-inline
-                      %input{:name => "question[correct_option]",:disabled => true, :type => "radio", :value => "true",:checked => to_boolean(@question.correct_option)}>
+                      %input{:name => "question[correct_option]",:disabled => true, :type => "radio", :value => "true"}>
                       TRUE
                   %li
                     %label.radio-inline
-                      %input{:name => "question[correct_option]",:disabled => true, :type => "radio", :value => "false",:checked => !to_boolean(@question.correct_option)}>
+                      %input{:name => "question[correct_option]",:disabled => true, :type => "radio", :value => "false"}>
                       FALSE
 

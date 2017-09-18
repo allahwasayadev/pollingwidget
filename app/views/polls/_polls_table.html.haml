@@ -17,10 +17,11 @@
         %td #{poll.questions.count}
         %td N/A
         %td.text-center.editing-td
-          = link_to "javascript:;",remote: true do
+          = link_to poll_path(poll),remote: true do
             %i.fa.fa-eye
           = link_to "javascript:;",remote: true do
             %i.fa.fa-pencil
         %td.text-center.delet-td
           = link_to poll_path(poll),method: "delete" do
             %i.fa.fa-trash
+#viewPoll.modal.fade.in.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
