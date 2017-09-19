@@ -18,5 +18,18 @@
           %br
           .col-sm-8
             = f.text_field :last_name, class: "form-control"
+        .field.form-group
+          = f.label :password, class: "col-sm-4 control-label"
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+          %br
+          .col-sm-8
+            = f.password_field :password, autocomplete: "off", class: "form-control",placeholder: "Enter passwords if passwords are to be changed."
+        .field.form-group
+          = f.label :password_confirmation, class: "col-sm-4 control-label"
+          %br
+          .col-sm-8
+            = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
         .actions.modal-btn-area
           = f.submit "Save"

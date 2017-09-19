@@ -7,6 +7,7 @@ $(document).on("turbolinks:load",function() {
     $('#login').removeClass('hide');
     $('#register').addClass('hide');
   });
+  $('.preview-block').preview({
+    form: '#form'
+  });
 });
-
-

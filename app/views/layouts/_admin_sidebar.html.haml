@@ -7,15 +7,15 @@
         %span
       %nav#cbp-spmenu-s1.cbp-spmenu.cbp-spmenu-vertical.cbp-spmenu-left.navarea
         %ul.nav-area
-          %li
-            = link_to "My Account",account_admin_path(current_admin)
-          %li
-            %a{:href => "#"} Widgets
-          %li{ class: "#{active_class('polls','index')}" }
-            = link_to "Polls", polls_path
-          %li{ class: "#{active_class('questions','index')}" }
-            = link_to "Questions", questions_path
           %li{ class: "#{active_class('categories','index')}" }
             = link_to "Categories", categories_path
+          %li{ class: "#{active_class('questions','index')}" }
+            = link_to "Questions", questions_path
+          %li{ class: "#{active_class('polls','index')}" }
+            = link_to "Polls", polls_path
+          %li
+            %a{:href => "#"} Widgets
+          %li
+            = link_to "My Account",account_admin_path(current_admin)
           %li{ class: "#{active_class('admin','index')}" }
             = link_to "Admins", admin_index_path
