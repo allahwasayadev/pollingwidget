@@ -97,4 +97,39 @@ $(document).on("turbolinks:load",function() {
         question_ids.splice( question_ids.indexOf($(this).val()), 1 );
     }
   });
+  $(document).on('click', '.create-poll', function(e) {
+   var name = $('.poll-name').val();
+   if (name == "") {
+    e.preventDefault();
+    $('.poll-name').attr("placeholder", "Name can't be blank");
+    $('.poll-name').focus();
+   }
+  });
+  $(document).on('click', '#slide-left , #slide-right', function(e) {
+    var sections = $('.mySlides');
+    var index = sections.index($(".mySlides:visible"))+1;
+   $('#question-number').html((index)+'/'+sections.length)
+   if (index == sections.length) {
+    if (index == 1) {
+      $('#slide-left').attr("disabled", true);
+    }
+    else {
+      $('#slide-left').attr("disabled", false);
+    }
+    $('#slide-right').attr("disabled", true);
+   }
+   else if (index == 1) {
+    if (index == sections.length) {
+      $('#slide-right').attr("disabled", true);
+    }
+    else {
+      $('#slide-right').attr("disabled", false);
+    }
+    $('#slide-left').attr("disabled", true);
+   }
+   else{
+    $('#slide-right').attr("disabled", false);
+    $('#slide-left').attr("disabled", false);
+   }
+  });
 });

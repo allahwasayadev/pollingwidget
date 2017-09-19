@@ -5,9 +5,9 @@ class PollsController < ApplicationController
   def index
     @categories = Category.all
     if params[:poll].blank?
-      @polls = Poll.all.includes(:category)
+      @polls = Poll.all.includes(:category , :questions)
     else
-      @polls = Poll.filter_polls(poll_params)
+      @polls = Poll.filter_polls(poll_params).includes(:category , :questions)
     end
     respond_to do |format|
       format.html
@@ -17,9 +17,9 @@ class PollsController < ApplicationController
 
   def update_questions
     if params[:poll].blank?
-      @questions = Question.all.includes(:category)
+      @questions = Question.all.includes(:category , :polls)
     else
-      @questions = Question.filter_questions(poll_params)
+      @questions = Question.filter_questions(poll_params).includes(:category , :polls)
     end
     respond_to do |format|
       format.js
@@ -29,7 +29,7 @@ class PollsController < ApplicationController
   def new
     @poll = Poll.new
     @categories = Category.all
-    @questions = Question.all.includes(:category)
+    @questions = Question.all.includes(:category , :polls)
   end
 
   def create
@@ -45,6 +45,8 @@ class PollsController < ApplicationController
   end
 
   def show
+    @poll_questions = @poll.questions
+    @category = @poll.category
   end
 
   def destroy

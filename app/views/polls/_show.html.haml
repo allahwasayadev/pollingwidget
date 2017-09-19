@@ -2,9 +2,9 @@
   .modal-content
     .modal-body
       %h1 View Question
-      %p #{@poll.category.name}
+      %p #{@category.name}
       .w3-content.w3-display-container
-        - @poll.questions.each do |question|
+        - @poll_questions.each_with_index do |question,index|
           .mySlides.show-question
             .row
               .col-sm-4
@@ -29,7 +29,8 @@
                         %label.radio-inline
                           %input{:name => "question[correct_option]",:disabled => true, :type => "radio", :value => "false"}>
                           FALSE
-        %button.w3-button.w3-black.w3-display-left.question-show-left{:onclick => "plusDivs(-1)",:type=>"button"} ❮
-        %button.w3-button.w3-black.w3-display-right.question-show-right{:onclick => "plusDivs(1)",:type=>"button"} ❯
+        %span.right#question-number 1/#{@poll_questions.count}
+        %button.w3-display-left.question-show-left#slide-left{:onclick => "plusDivs(-1)",:type=>"button",disabled: "true"} ❮
+        %button.w3-display-right.question-show-right#slide-right{:onclick => "plusDivs(1)",:type=>"button"} ❯
 :javascript
-  plusDivs(1)
+  plusDivs(0)

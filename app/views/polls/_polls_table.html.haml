@@ -12,9 +12,9 @@
     - @polls.each_with_index do |poll,index|
       %tr
         %td #{poll.name}
-        %td #{poll.category.name}
+        %td #{poll.try(:category).try(:name)}
         %td #{poll.poll_type}
-        %td #{poll.questions.count}
+        %td #{poll.try(:questions).try(:count)}
         %td N/A
         %td.text-center.editing-td
           = link_to poll_path(poll),remote: true do
