@@ -1,0 +1,31 @@
+= form_for @admin, class: "form-horizontal" do |f|
+  .field.form-group
+    = f.label :email, class: "col-sm-4 control-label"
+    %br
+    .col-sm-8
+      = f.email_field :email, autofocus: true, class: "form-control",disabled: true
+  .field.form-group
+    = f.label :name, class: "col-sm-4 control-label"
+    %br
+    .col-sm-8
+      = f.text_field :name, class: "form-control"
+  .field.form-group
+    = f.label :last_name, class: "col-sm-4 control-label"
+    %br
+    .col-sm-8
+      = f.text_field :last_name, class: "form-control"
+  .field.form-group.password-group
+    = f.label :password, class: "col-sm-4 control-label"
+    - if @minimum_password_length
+      %em
+        (#{@minimum_password_length} characters minimum)
+    %br
+    .col-sm-8
+      = f.password_field :password, autocomplete: "off", class: "form-control password-field",placeholder: "Enter passwords if passwords are to be changed."
+  .field.form-group.password-confirmation-group
+    = f.label :password_confirmation, class: "col-sm-4 control-label"
+    %br
+    .col-sm-8
+      = f.password_field :password_confirmation, autocomplete: "off", class: "form-control password-confirmation-field"
+  .actions.right
+    = f.submit "Save", class: "update-user btn btn-success"

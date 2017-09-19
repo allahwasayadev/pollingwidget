@@ -29,8 +29,14 @@ class AdminController < ApplicationController
   end
 
   def update
-    @admin.update(admin_params)
-    redirect_back(fallback_location: :back,notice: "User updated")
+    if @admin.update(admin_params)
+      unless current_admin.super_admin? && current_admin != @admin
+        sign_in(@admin, :bypass => true)
+      end
+      redirect_back(fallback_location: :back,notice: "User information updated")
+    else
+      redirect_back(fallback_location: :back,alert: "User Could not be updated")
+    end
   end
 
   def destroy

@@ -7,7 +7,14 @@ $(document).on("turbolinks:load",function() {
     $('#login').removeClass('hide');
     $('#register').addClass('hide');
   });
-  $('.preview-block').preview({
-    form: '#form'
+  $(document).on('click', '.update-user', function(e) {
+    var password = $('.password-field').val();
+    var passwordConfirmation = $('.password-confirmation-field').val();
+    if (password != passwordConfirmation) {
+      e.preventDefault();
+      $('.password-group').addClass('red');
+      $('.password-confirmation-group').addClass('red');
+      alert("Passwords do not match");
+    }
   });
 });
