@@ -29,23 +29,22 @@ $(document).on("turbolinks:load",function() {
   $( ".question-select" ).change(function() {
     $(".question-fields :input").attr("disabled", false);
   });
-      $('.preview-block').preview({
+  $('.preview-block').preview({
     form: '#form'
-});
+  });
 });
 function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-          reader.onload = function (e) {
-            $('#img_prev')
-              .attr('src', e.target.result)
-              .width(130)
-              .height(105);
-          };
+    reader.onload = function (e) {
+      $('#img_prev')
+        .attr('src', e.target.result)
+        .width(130)
+        .height(105);
+    };
 
-          reader.readAsDataURL(input.files[0]);
-        }
-        $('#img_prev').removeClass('hide');
-      }
-
+    reader.readAsDataURL(input.files[0]);
+  }
+  $('#img_prev').removeClass('hide');
+}

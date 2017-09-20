@@ -14,12 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # if params[:question_category_all].present? or params[:question][:category_id] == ""
-    #   question_params[:category_id] = Category.find_by(name: "General").id
-    # end
     @question = Question.new(question_params)
-    # @question.options = question_params[:options]
-    # return render json:  @question
     if question_params[:question_type] == "Multi"
       question_params[:correct_option] = question_params[:options]["1"]
     end

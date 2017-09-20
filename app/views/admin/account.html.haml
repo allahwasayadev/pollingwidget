@@ -1,9 +1,8 @@
 .container
   .row
     .col-md-7
-      - if current_admin.super_admin?
-        %button.btn.edit-profile-btn.pull-right{"data-target" => "#editProfile", "data-toggle" => "modal", :type => "button"}
-          %a.fa.fa-pencil
+      %button.btn.edit-profile-btn.pull-right{"data-target" => "#editProfile", "data-toggle" => "modal", :type => "button"}
+        %a.fa.fa-pencil
       .panel.panel-default
         .panel-heading
           %h4 User Profile
