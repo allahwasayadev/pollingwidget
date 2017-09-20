@@ -16,9 +16,6 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    if question_params[:question_type] == "Multi"
-      question_params[:correct_option] = question_params[:options]["1"]
-    end
     if @question.save
       if params[:commit] == "Create Another"
         redirect_to questions_url(category_id: question_params[:category_id]), notice: 'Question was successfully created.'
@@ -39,10 +36,10 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if question_params[:question_type] == "Multi"
-      question_params[:correct_option] = question_params[:options]["1"]
-    end
     @question.update(question_params)
+    if @question.question_type == "Multi"
+      @question.set_correct_option
+    end
     redirect_to questions_url, notice: 'Question was successfully updated.'
   end
 
