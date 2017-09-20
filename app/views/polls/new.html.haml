@@ -1,5 +1,5 @@
 .poll-page
-  %h1 Questions for polls
+  %h1 Create your poll
   = form_for @poll, class: "form-horizontal" do |f|
     .row.polls-selects
       = f.label "Poll Title/Name", class: "control-label"
@@ -12,6 +12,7 @@
         = f.select :poll_type,content_tag(:option,'Type',:value=>"") + "<option>Multi</option><option>T/F</option>".html_safe,{},class: 'form-control get-type'
     = f.hidden_field :admin_id,value: current_admin.id
     = hidden_field_tag "question_ids",'',id: "set-question-ids"
+    %h1 Questions for polls
     #questions-table.margin-bottom.hide
       = render "questions_table"
     #preview-poll.margin-bottom.hide
