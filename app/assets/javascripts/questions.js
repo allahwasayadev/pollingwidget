@@ -19,7 +19,7 @@ $(document).on("turbolinks:load",function() {
     });
   }
   else {
-    $( ".question-select" ).attr("disabled", true);
+    $( ".question-select" ).attr('readonly','readonly');
   }
 
   $('.preview-block').preview({
