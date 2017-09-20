@@ -1,45 +1,44 @@
-.container
-  .row
-    .col-md-7
-      %button.btn.edit-profile-btn.pull-right{"data-target" => "#editProfile", "data-toggle" => "modal", :type => "button"}
-        %a.fa.fa-pencil
-      .panel.panel-default
-        .panel-heading
-          %h4 User Profile
-        .panel-body
-          .box.box-info
-            .box-body
-              .col-sm-6
-                %div{:align => "center"}
-                  %img#profile-image1.img-circle.img-responsive{:alt => "User Pic", :src => "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"}/
-                  %input#profile-image-upload.hidden{:type => "file"}/
-                  %div{:style => "color:#999;"} click here to change profile image
-                  / Upload Image Js And Css
-                %br/
-                / /input-group
-              .col-sm-6
-                %h4{:style => "color:#00b1b1;"} #{@admin.name}
-                %span
-                  - if @admin.super_admin?
-                    %p Admin
-                  - else
-                    %p Writer
-              .clearfix
-              %hr{:style => "margin:5px 0 5px 0;"}
-              .col-sm-5.col-xs-6.tital Name:
-              .col-sm-7.col-xs-6 #{@admin.name}
-              .clearfix
-              .bot-border
-              .col-sm-5.col-xs-6.tital Last Name:
-              .col-sm-7 #{@admin.last_name}
-              .clearfix
-              .bot-border
-              .col-sm-5.col-xs-6.tital E-Mail:
-              .col-sm-7 #{@admin.email}
-              .clearfix
-              .bot-border
-              / /.box-body
-            / /.box
+.row
+  .col-md-7
+    %button.btn.edit-profile-btn.pull-right{"data-target" => "#editProfile", "data-toggle" => "modal", :type => "button"}
+      %a.fa.fa-pencil
+    .panel.panel-default
+      .panel-heading
+        %h4 User Profile
+      .panel-body
+        .box.box-info
+          .box-body
+            .col-sm-6
+              %div{:align => "center"}
+                %img#profile-image1.img-circle.img-responsive{:alt => "User Pic", :src => "https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg"}/
+                %input#profile-image-upload.hidden{:type => "file"}/
+                %div{:style => "color:#999;"} click here to change profile image
+                / Upload Image Js And Css
+              %br/
+              / /input-group
+            .col-sm-6
+              %h4{:style => "color:#00b1b1;"} #{@admin.name}
+              %span
+                - if @admin.super_admin?
+                  %p Admin
+                - else
+                  %p Writer
+            .clearfix
+            %hr{:style => "margin:5px 0 5px 0;"}
+            .col-sm-5.col-xs-6.tital Name:
+            .col-sm-7.col-xs-6 #{@admin.name}
+            .clearfix
+            .bot-border
+            .col-sm-5.col-xs-6.tital Last Name:
+            .col-sm-7 #{@admin.last_name}
+            .clearfix
+            .bot-border
+            .col-sm-5.col-xs-6.tital E-Mail:
+            .col-sm-7 #{@admin.email}
+            .clearfix
+            .bot-border
+            / /.box-body
+          / /.box
 #editProfile.modal.fade.in.new-admin-writer{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content

@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
     @question = Question.new
     @categories = Category.all
     @questions = Question.all.includes(:category)
+    @category_id = params[:category_id] unless params[:category_id].blank?
   end
 
   def new
@@ -19,7 +20,11 @@ class QuestionsController < ApplicationController
       question_params[:correct_option] = question_params[:options]["1"]
     end
     if @question.save
-      redirect_to questions_url, notice: 'Question was successfully created.'
+      if params[:commit] == "Create Another"
+        redirect_to questions_url(category_id: question_params[:category_id]), notice: 'Question was successfully created.'
+      else
+        redirect_to questions_url, notice: 'Question was successfully created.'
+      end
     else
       redirect_to questions_url, alert: 'Question could not be created.'
     end
