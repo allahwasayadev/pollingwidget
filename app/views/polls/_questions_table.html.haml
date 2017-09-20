@@ -1,0 +1,24 @@
+%table.table.table-bordered.table-striped.question-table.polls-table
+  %thead
+    %tr
+      %th Question
+      %th Category
+      %th Type
+      %th Poll title
+      %th
+      %th.delet-td
+  %tbody
+    - @questions.each do |question|
+      %tr
+        %td #{question.question}
+        %td #{question.try(:category).try(:name)}
+        %td #{question.question_type}
+        %td #{question.polls.first.try(:name).blank? ? "N/A" : question.polls.first.try(:name)}
+        %td.text-center.editing-td
+          = link_to question_path(question),remote: true do
+            %i.fa.fa-eye
+        %td.text-center.delet-td.add-to-poll-checkbox
+          .checkbox
+            %p
+              %input.add-to-poll{:type => "checkbox", "data-value" => "#{question.to_json.html_safe}",value: "#{question.id}"}>
+              add to poll

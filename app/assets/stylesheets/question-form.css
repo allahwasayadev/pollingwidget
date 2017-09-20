@@ -4,7 +4,7 @@
   float: left;
   width: 100%;
 }
-.question-page h1 {
+.question-page h1, .poll-page h1 {
   font-size: 24px;
   line-height: 27px;
   font-weight: bold;

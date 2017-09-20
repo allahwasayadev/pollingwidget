@@ -7,6 +7,7 @@ class CreateQuestions < ActiveRecord::Migration[5.0]
       t.string :correct_option
       t.string :image
       t.string :question_type
+      t.integer :admin_id
 
       t.timestamps
     end

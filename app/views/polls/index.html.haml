@@ -1,0 +1,11 @@
+.poll-page
+  .margin-bottom
+    = link_to "Create New Poll",new_poll_path,class: "btn btn-success"
+  %h1 Browse Created polls
+  .row.margin-bottom#browse-polls
+    .col-md-3
+      = select_tag "categories", content_tag(:option,'Category',:value=>"") + options_from_collection_for_select(@categories, "id", "name"),class: "form-control get-created-category"
+    .col-md-3
+      = select_tag "type", content_tag(:option,'Type',:value=>"") + "<option>Multi</option><option>T/F</option>".html_safe,class: "form-control get-created-type"
+  #polls-table
+    = render "polls_table"

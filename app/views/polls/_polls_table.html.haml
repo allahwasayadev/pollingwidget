@@ -1,0 +1,28 @@
+%table.table.table-bordered.table-striped.question-table
+  %thead
+    %tr
+      %th Poll Name/Title
+      %th Category
+      %th Type
+      %th # of qestions
+      %th Widget ID
+      %th
+      %th.delet-td
+  %tbody
+    - @polls.each_with_index do |poll,index|
+      %tr
+        %td #{poll.name}
+        %td #{poll.try(:category).try(:name)}
+        %td #{poll.poll_type}
+        %td #{poll.try(:questions).try(:count)}
+        %td N/A
+        %td.text-center.editing-td
+          = link_to poll_path(poll),remote: true do
+            %i.fa.fa-eye
+          = link_to "javascript:;",remote: true do
+            %i.fa.fa-pencil
+        %td.text-center.delet-td
+
+          = link_to poll_path(poll),method: "delete", :data => {:confirm => 'Are you sure you want to delete this poll?'} do
+            %i.fa.fa-trash
+#viewPoll.modal.fade.in.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
