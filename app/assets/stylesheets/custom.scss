@@ -1,0 +1,67 @@
+.sign-in {
+margin-top: 20%;
+}
+.container.col-md-6.float-none {
+  float: none;
+}
+.main-background {
+  background: image-url('background.jpg') center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  height: 100%;
+  background-size: cover;
+}
+.modal-btn-area {
+  margin: 20px 0 0;
+}
+.modal-content {
+  padding-bottom: 30px;
+}
+
+.nav-area>li.active>a {
+  color: black;
+  background:#999999;
+}
+
+.field {
+  display: flex;
+}
+input.hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+#profile-image1 {
+  cursor: pointer;
+  width: 100px;
+  height: 100px;
+  border:2px solid #03b1ce ;
+}
+.tital{
+  font-size:16px; font-weight:500;
+}
+.bot-border{
+  border-bottom:1px #f8f8f8 solid;
+  margin:5px 0  5px 0;
+}
+.edit-profile-btn {
+  margin: 15px;
+}
+.truefalse {
+  display: none;
+}
+.question-list.edit-question li {
+  width: 47%;
+}
+
+.question-show {
+  background: lightgray;
+}
+
+.text-view {
+  margin-top: 15%;
+}
+
+.preview-block ul {
+  margin-left: 15%;
+}

@@ -9,7 +9,11 @@
   %body
     = render 'layouts/header'
     .twocolumns
-      = render 'layouts/sidebar'
+      - if current_admin.super_admin?
+        = render 'layouts/admin_sidebar'
+      - else
+        = render 'layouts/sidebar'
       #content
-        = render 'layouts/flash_messages'
-        = yield
+        .admin-table
+          = render 'layouts/flash_messages'
+          = yield

@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
+gem 'carrierwave'
+gem "mini_magick"
 
 gem 'gibbon', github: "amro/gibbon"
 

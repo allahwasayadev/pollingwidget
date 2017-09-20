@@ -1,0 +1,30 @@
+.modal-dialog{:role => "document"}
+  .modal-content
+    .modal-body
+      %h1 View Question
+      %p #{@question.category.name}
+      .question-show
+        .row
+          .col-sm-4
+            %div.profile-image{:type => "file"}
+              %img{:src => @question.image.present? ? @question.image.thumb :  asset_path("avatar.png")}
+          .col-sm-8
+            .field.form-group
+              %p #{@question.question}
+            .field.form-group
+              - if @question.question_type == "Multi"
+                %ul.question-list.edit-question
+                  - @question.options.each_with_index do |opt,ind|
+                    %li
+                      %input.form-control{:name => "question[options][#{ind+1}]",:disabled => true, :type => "text",:id=> "question_options",value: opt.second}
+              - else
+                %ul.radio-list
+                  %li
+                    %label.radio-inline
+                      %input{:name => "question[correct_option]",:disabled => true, :type => "radio", :value => "true",:checked => to_boolean(@question.correct_option)}>
+                      TRUE
+                  %li
+                    %label.radio-inline
+                      %input{:name => "question[correct_option]",:disabled => true, :type => "radio", :value => "false",:checked => !to_boolean(@question.correct_option)}>
+                      FALSE
+

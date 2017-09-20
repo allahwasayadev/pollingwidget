@@ -1,0 +1,38 @@
+%h1 Categories
+%table.table.table-bordered.table-striped
+  %thead
+    %tr
+      %th Name
+      %th
+      %th.delet-td
+  %tbody
+    - @categories.try(:each_with_index) do |category,index|
+      %tr
+        %td #{category.name}
+        %td.text-center.editing-td
+          = link_to category_path(category),remote: true do
+            %i.fa.fa-eye.edit-category
+          = link_to edit_category_path(category),remote: true do
+            %i.fa.fa-pencil
+        %td.text-center.delet-td
+          %a.fa.fa-trash{"data-target" => "#deleteCategory_#{index}", "data-toggle" => "modal", :type => "button"}
+          / = render "delete_category_modal", locales: {category: category}
+          = render partial: "delete_category_modal", locals: {category: category,index: index}
+- if current_admin.super_admin?
+  %button.btn.btn-wirte{"data-target" => "#myModal", "data-toggle" => "modal", :type => "button"}
+    Create Category
+#myModal.modal.fade.in.new-category{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        %h1 Create a new Category
+        = form_for @category, class: "form-horizontal" do |f|
+          .field.form-group
+            = f.label :name, class: "col-sm-4 control-label"
+            %br
+            .col-sm-8
+              = f.text_field :name, class: "form-control"
+          .actions.modal-btn-area
+            = f.submit "Create"
+#viewCategory.modal.fade.in.new-category.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#editCategory.modal.fade.in.new-category.text-center{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}

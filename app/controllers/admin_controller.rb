@@ -1,5 +1,6 @@
 class AdminController < ApplicationController
   before_filter :set_layout
+  before_filter :set_admin, only: [:show,:edit,:update,:account,:destroy]
 
   def index
     @admins = Admin.all
@@ -15,44 +16,46 @@ class AdminController < ApplicationController
     @admin = Admin.new(admin_params)
     if @admin.save
       NotificationMailer.new_user_notification(admin_params).deliver
-      redirect_to admin_index_url, notice: 'Admin was successfully created.'
+      redirect_to admin_index_url, notice: 'Writer created successfully.'
     else
-      render :new
+      redirect_back(fallback_location: :back,alert: "Email already exists")
     end
   end
 
   def show
-    @admin = Admin.find(params[:id])
   end
 
   def edit
-    @admin = Admin.find(params[:id])
   end
 
   def update
-    admin = Admin.find(params[:id])
-    admin.update(admin_params)
+    @admin.update(admin_params)
     redirect_back(fallback_location: :back,notice: "User updated")
   end
 
   def destroy
-    admin = Admin.find(params[:id])
-    admin.delete
+    @admin.delete
     redirect_to admin_index_url, alert: "Requested user has been deleted"
   end
 
   def account
-    @admin = Admin.find(params[:id])
   end
 
   private
 
   def admin_params
-    params.require(:admin).permit(:name,:last_name,:email,:password,:password_confirmation)
+    admin_params = params.require(:admin).permit(:name,:last_name,:email,:password,:password_confirmation)
+    admin_params.delete(:password) unless admin_params[:password].present?
+    admin_params.delete(:password_confirmation) unless admin_params[:password_confirmation].present?
+    admin_params
   end
 
   def set_layout
     self.class.layout "dashboard"
+  end
+
+  def set_admin
+    @admin = Admin.find(params[:id])
   end
 
 end

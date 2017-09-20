@@ -1,0 +1,10 @@
+.modal-dialog{:role => "document"}
+  .modal-content
+    .modal-body
+      %h1 View Category
+      .field.form-group
+        %label.col-sm-4.control-label
+          Name
+        %br
+        .col-sm-8
+          %p #{@category.name}
