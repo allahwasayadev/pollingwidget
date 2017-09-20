@@ -48,4 +48,3 @@ function readURL(input) {
   }
   $('#img_prev').removeClass('hide');
 }
-
