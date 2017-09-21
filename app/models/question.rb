@@ -5,6 +5,7 @@ class Question < ApplicationRecord
   has_many :polls, through: :poll_questions
   after_create :set_correct_option, if: :multiplechoice
   mount_uploader :image, ImageUploader
+  default_scope { order(created_at: :desc) }
 
   def self.filter_questions(poll_params)
     if poll_params[:question_type].blank? && !poll_params[:category_id].blank?
