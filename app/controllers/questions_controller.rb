@@ -5,7 +5,7 @@ class QuestionsController < ApplicationController
   def index
     @question = Question.new
     @categories = Category.all
-    @questions = Question.all.includes(:category)
+    @questions = Question.all.includes(:category).paginate(:page => params[:page], :per_page => 10)
     @category_id = params[:category_id] unless params[:category_id].blank?
   end
 

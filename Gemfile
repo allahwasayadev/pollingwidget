@@ -40,6 +40,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'carrierwave'
 gem "mini_magick"
+gem 'will_paginate', '~> 3.1.0'
 
 gem 'gibbon', github: "amro/gibbon"
 

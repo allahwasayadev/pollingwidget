@@ -9,6 +9,7 @@ class PollsController < ApplicationController
     else
       @polls = Poll.filter_polls(poll_params).includes(:category , :questions)
     end
+    @polls = @polls.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.html
       format.js
@@ -21,6 +22,7 @@ class PollsController < ApplicationController
     else
       @questions = Question.filter_questions(poll_params).includes(:category , :polls)
     end
+    @questions = @questions.paginate(:page => params[:page], :per_page => 10)
     respond_to do |format|
       format.js
     end
@@ -29,7 +31,7 @@ class PollsController < ApplicationController
   def new
     @poll = Poll.new
     @categories = Category.all
-    @questions = Question.all.includes(:category , :polls)
+    @questions = Question.all.includes(:category , :polls).paginate(:page => params[:page], :per_page => 10)
   end
 
   def create
