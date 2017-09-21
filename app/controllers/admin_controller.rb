@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_filter :set_layout
-  before_filter :set_admin, only: [:show,:edit,:update,:account,:destroy]
+  before_filter :set_admin, only: [:show,:edit,:update,:destroy]
 
   def index
     @admins = Admin.all
@@ -45,6 +45,7 @@ class AdminController < ApplicationController
   end
 
   def account
+    @admin = Admin.find(current_admin.id)
   end
 
   private

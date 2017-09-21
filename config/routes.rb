@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :admin, controllers: { registrations: "admin/registrations",sessions: "admin/sessions" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: "static_pages#index"
+  root to: "admin#account"
+  get '/sign_in', to: 'static_pages#index'
 
   resources :admin, except: [:create] do
     member do

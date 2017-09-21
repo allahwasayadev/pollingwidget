@@ -1,6 +1,7 @@
 .poll-page
-  .margin-bottom
-    = link_to "Create New Poll",new_poll_path,class: "btn btn-success"
+  - if current_admin.super_admin?
+    .margin-bottom
+      = link_to "Create New Poll",new_poll_path,class: "btn btn-success"
   %h1 Browse Created polls
   .row.margin-bottom#browse-polls
     .col-md-3
