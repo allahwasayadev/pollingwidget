@@ -20,8 +20,9 @@
       %br
       .w3-content.w3-display-container
         #carousel-display
-        %button.w3-button.w3-black.w3-display-left{:onclick => "plusDivs(-1)",:type=>"button"} ❮
-        %button.w3-button.w3-black.w3-display-right{:onclick => "plusDivs(1)",:type=>"button"} ❯
+        %button.w3-button.w3-black.w3-display-left#slide-left{:onclick => "plusDivs(-1)",:type=>"button",disabled: "true"} ❮
+        %button.w3-button.w3-black.w3-display-right#slide-right{:onclick => "plusDivs(1)",:type=>"button"} ❯
+        %span.right#question-number.preview-count
       .actions.poll-preview-buttons
         = link_to "Cancel",polls_path,class: "btn btn-questioin"
         = f.submit "Save Poll",class: "btn btn-questioin create-poll"
