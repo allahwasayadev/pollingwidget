@@ -9,8 +9,8 @@
         %ul.nav-area
           %li{ class: "#{active_class('questions','index')}" }
             = link_to "Questions", questions_path
-          %li
-            %a{:href => "#"} Polls
+          %li{ class: "#{active_class('polls','index')}" }
+            = link_to "Polls", polls_path
           %li
             %a{:href => "#"} Widgets
           %li

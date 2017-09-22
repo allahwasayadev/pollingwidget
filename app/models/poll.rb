@@ -3,6 +3,7 @@ class Poll < ApplicationRecord
   belongs_to :admin
   has_many :poll_questions
   has_many :questions, through: :poll_questions
+  default_scope { order(created_at: :desc) }
 
   def self.filter_polls(poll_params)
     if poll_params[:poll_type].blank? && !poll_params[:category_id].blank?

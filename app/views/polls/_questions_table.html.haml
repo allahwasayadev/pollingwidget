@@ -22,3 +22,6 @@
             %p
               %input.add-to-poll{:type => "checkbox", "data-value" => "#{question.to_json.html_safe}",value: "#{question.id}"}>
               add to poll
+= will_paginate @questions,class: "poll-paginate pagination-style"
+:javascript
+  $('.poll-paginate a').attr('data-remote', true);

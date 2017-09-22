@@ -3,7 +3,9 @@ class Question < ApplicationRecord
   belongs_to :admin
   has_many :poll_questions
   has_many :polls, through: :poll_questions
+  after_create :set_correct_option, if: :multiplechoice
   mount_uploader :image, ImageUploader
+  default_scope { order(created_at: :desc) }
 
   def self.filter_questions(poll_params)
     if poll_params[:question_type].blank? && !poll_params[:category_id].blank?
@@ -16,5 +18,14 @@ class Question < ApplicationRecord
       @questions = Question.all
     end
     @questions
+  end
+
+  def set_correct_option
+    self.correct_option = self.options["1"]
+    self.save
+  end
+
+  def multiplechoice
+    self.question_type == "Multi"
   end
 end
