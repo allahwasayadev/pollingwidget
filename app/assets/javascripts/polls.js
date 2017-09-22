@@ -89,12 +89,19 @@ $(document).on("turbolinks:load",function() {
         if($('#preview-poll').hasClass('hide')) {
           $('#preview-poll').removeClass('hide');
         }
+        var sections = $('.mySlides');
+        var index = sections.index($(".mySlides:visible"))+1;
+        $('#question-number').html((index)+'/'+sections.length);
+        $('#slide-right').attr("disabled", false);
       }
     } else {
         // the checkbox is now no longer checked
         $('#slide-'+$(this).val()).remove();
         plusDivs(1)
         question_ids.splice( question_ids.indexOf($(this).val()), 1 );
+        var sections = $('.mySlides');
+        var index = sections.index($(".mySlides:visible"))+1;
+        $('#question-number').html((index)+'/'+sections.length);
     }
   });
   $(document).on('click', '.create-poll', function(e) {
@@ -108,7 +115,7 @@ $(document).on("turbolinks:load",function() {
   $(document).on('click', '#slide-left , #slide-right', function(e) {
     var sections = $('.mySlides');
     var index = sections.index($(".mySlides:visible"))+1;
-   $('#question-number').html((index)+'/'+sections.length)
+   $('#question-number').html((index)+'/'+sections.length);
    if (index == sections.length) {
     if (index == 1) {
       $('#slide-left').attr("disabled", true);
